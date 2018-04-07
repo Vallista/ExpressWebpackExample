@@ -6,13 +6,20 @@
   "repository": "https://github.com/Vallista/2018_01_portfolio.git",
   "author": "Vallista <vallista@tistory.com>",
   "license": "MIT",
+  "engines": {
+    "node": "8.9.4"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.6.1",
+    "chalk": "^2.3.2",
     "css-loader": "^0.28.11",
+    "eslint-loader": "^2.0.0",
+    "semver": "^5.5.0",
     "style-loader": "^0.20.3",
     "webpack": "3.11.0",
-    "webpack-dev-server": "2.11.0"
+    "webpack-dev-server": "2.11.0",
+    "webpack-merge": "^4.1.2"
   }
 }
