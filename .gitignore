@@ -1,0 +1,4 @@
+.ds_store
+dist
+node_modules
+.idea/
