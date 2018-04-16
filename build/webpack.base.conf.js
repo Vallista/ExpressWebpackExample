@@ -25,4 +25,14 @@ module.exports = {
   output: {
     path: isProduction ? config.prod.assetsPublicPath : !config.dev.assetsPublicPath
   },
+  resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+    },
+  },
+  module: {
+  
+  },
 };
