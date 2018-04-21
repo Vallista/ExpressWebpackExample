@@ -1,9 +1,12 @@
 require('./check-versions')();
 
 const webpack = require('webpack');
-const isProduction = process.env.NODE_ENV === 'production';
+const isProduction = process.env.NODE_ENV;
 
-let webpackConfig = isProduction ? require('./webpack.prod.conf') : require('./webpack.dev.conf');
 const webpackErrorBinding = require('./error.js');
+let webpackConfig = null;
 
-webpack(webpackConfig, webpackErrorBinding);
+if (isProduction === 'production') {
+  webpackConfig = require('./webpack.prod.conf');
+  webpack(webpackConfig, webpackErrorBinding);
+}

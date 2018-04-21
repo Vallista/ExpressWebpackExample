@@ -1,38 +1,61 @@
-const isProduction = process.env.NODE_ENV === 'production';
 const path = require('path');
-const config = require('./../config');
 
-const resolve = (dir) => {
-  return path.resolve(__dirname, '..', dir);
-};
-
-const createLintingRule = () => ({
-  test: /\.js$/,
-  loader: 'eslint-loader',
-  enforce: 'pre',
-  include: [resolve('src'), resolve('test')],
-  options: {
-    formatter: require('eslint-friendly-formatter'),
-    emitWarning: isProduction ? config.prod.emitWarning : !config.dev.emitWarning
-  },
-});
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-  context: path.resolve(__dirname, '../'),
-  entry: {
-    app: './src/App.js'
-  },
+  entry: path.resolve(__dirname, '../js'),
   output: {
-    path: isProduction ? config.prod.assetsPublicPath : !config.dev.assetsPublicPath
-  },
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-    },
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
-  
+    rules: [
+      {
+        test: /\.css$/,
+        use: [{
+          loader: 'style-loader', // creates style nodes from JS strings
+        }, {
+          loader: 'css-loader', // translates CSS into CommonJS
+        }, {
+          loader: 'sass-loader', // compiles Sass to CSS
+          options: {
+            includePaths: ['sass'],
+          },
+        }, {
+          loader: 'postcss-loader',
+        }],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'file-loader',
+        options: {
+          outputPath: 'images/',
+        },
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['env']
+            },
+          }
+        ],
+      },
+    ],
   },
+  plugins: [
+    // Simply copies the files over
+    new CopyWebpackPlugin([
+      { from: path.resolve(__dirname, '../html'), }, // to: output.path
+    ]),
+  ],
+  stats: {
+    // Nice colored output
+    colors: true,
+  },
+  // Create Sourcemaps for the bundle
+  devtool: 'source-map',
 };
