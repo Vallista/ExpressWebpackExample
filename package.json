@@ -9,6 +9,10 @@
   "engines": {
     "node": "8.9.4"
   },
+  "scripts": {
+    "build": "NODE_ENV=production node build/build",
+    "start": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js --inline --hot"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.4",
@@ -22,5 +26,8 @@
     "webpack": "3.11.0",
     "webpack-dev-server": "2.11.0",
     "webpack-merge": "^4.1.2"
+  },
+  "dependencies": {
+    "copy-webpack-plugin": "^4.5.1"
   }
 }
