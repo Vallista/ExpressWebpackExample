@@ -1,12 +1,14 @@
 const path = require('path');
 
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const htmlWebpackPlugin = require('html-webpack-plugin');
+
+const projectDir = path.resolve(__dirname, '../project');
 
 module.exports = {
-  entry: path.resolve(__dirname, '../js'),
+  entry: path.resolve(projectDir, 'src'),
   output: {
+    path: path.resolve(__dirname, '../dist'),
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
@@ -16,13 +18,6 @@ module.exports = {
           loader: 'style-loader', // creates style nodes from JS strings
         }, {
           loader: 'css-loader', // translates CSS into CommonJS
-        }, {
-          loader: 'sass-loader', // compiles Sass to CSS
-          options: {
-            includePaths: ['sass'],
-          },
-        }, {
-          loader: 'postcss-loader',
         }],
       },
       {
@@ -47,10 +42,9 @@ module.exports = {
     ],
   },
   plugins: [
-    // Simply copies the files over
-    new CopyWebpackPlugin([
-      { from: path.resolve(__dirname, '../html'), }, // to: output.path
-    ]),
+    new htmlWebpackPlugin({
+      title: 'Webpack Test'
+    }),
   ],
   stats: {
     // Nice colored output
