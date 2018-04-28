@@ -1,6 +1,6 @@
-## WebpackExample
+## ExpressWebpackExample
 
-WebpackExample은 Webpack에 대해서 어려움을 느끼는 프로그래머들을 위해 만든 예제입니다.
+ExpressWebpackExample은 Webpack과 Express 분리 프로그래밍에 대해서 어려움을 느끼는 프로그래머들을 위해 만든 예제입니다.
 
 기본적으로 Webpack은 프로젝트 상단에 webpack.config.js를 통해서 설정을 하게 됩니다. 하지만 production에서 들어가는 설정과 development에서 들어가는 설정이 다를 수 밖에 없습니다.
 
