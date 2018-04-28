@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/bin/yarn add postcss-loader --dev
+  /usr/local/bin/node /usr/local/bin/yarn add debug
 
 PATH: 
   “/Applications/Postgres.app/Contents/Versions/latest/bin:/Library/Frameworks/Python.framework/Versions/3.6/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Postgres.app/Contents/Versions/latest/bin:/Applications/Postgres.app/Contents/Versions/latest/bin”
@@ -28,6 +28,7 @@ npm manifest:
     "scripts": {
       "build": "NODE_ENV=production node build/build",
       "start": "NODE_ENV=development webpack-dev-server --config build/webpack.dev.conf.js --inline --hot"
+      "server-start" "NODE_ENV=development nod"
     },
     "devDependencies": {
       "babel-core": "^6.26.0",
@@ -37,13 +38,20 @@ npm manifest:
       "copy-webpack-plugin": "^4.5.1",
       "css-loader": "^0.28.11",
       "eslint-loader": "^2.0.0",
+      "file-loader": "^1.1.11",
       "html-webpack-plugin": "^3.2.0",
+      "postcss-loader": "^2.1.4",
       "semver": "^5.5.0",
       "style-loader": "^0.20.3",
       "webpack": "3.11.0",
       "webpack-dev-server": "2.11.0",
       "webpack-merge": "^4.1.2"
     },
+    "dependencies": {
+      "body-parser": "^1.18.2",
+      "cookie-parser": "^1.4.3",
+      "express": "^4.16.3"
+    }
   }
 
 yarn manifest: 
@@ -809,7 +817,7 @@ Lockfile:
     version "4.11.8"
     resolved "https://registry.yarnpkg.com/bn.js/-/bn.js-4.11.8.tgz#2cde09eb5ee341f484746bb0309b3253b1b1442f"
   
-  body-parser@1.18.2:
+  body-parser@1.18.2, body-parser@^1.18.2:
     version "1.18.2"
     resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.2.tgz#87678a19d84b47d859b83199bd59bce222b10454"
     dependencies:
@@ -1293,6 +1301,13 @@ Lockfile:
     version "1.5.1"
     resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.5.1.tgz#b8278097b9bc229365de5c62cf5fcaed8b5599e5"
   
+  cookie-parser@^1.4.3:
+    version "1.4.3"
+    resolved "https://registry.yarnpkg.com/cookie-parser/-/cookie-parser-1.4.3.tgz#0fe31fa19d000b95f4aadf1f53fdc2b8a203baa5"
+    dependencies:
+      cookie "0.3.1"
+      cookie-signature "1.0.6"
+  
   cookie-signature@1.0.6:
     version "1.0.6"
     resolved "https://registry.yarnpkg.com/cookie-signature/-/cookie-signature-1.0.6.tgz#e303a882b342cc3ee8ca513a79999734dab3ae2c"
@@ -1336,6 +1351,18 @@ Lockfile:
   core-util-is@1.0.2, core-util-is@~1.0.0:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
+  
+  cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
+    version "2.2.2"
+    resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-2.2.2.tgz#6173cebd56fac042c1f4390edf7af6c07c7cb892"
+    dependencies:
+      is-directory "^0.3.1"
+      js-yaml "^3.4.3"
+      minimist "^1.2.0"
+      object-assign "^4.1.0"
+      os-homedir "^1.0.1"
+      parse-json "^2.2.0"
+      require-from-string "^1.1.0"
   
   create-ecdh@^4.0.0:
     version "4.0.0"
@@ -1874,6 +1901,10 @@ Lockfile:
     version "2.7.3"
     resolved "https://registry.yarnpkg.com/esprima/-/esprima-2.7.3.tgz#96e3b70d5779f6ad49cd032673d1c312767ba581"
   
+  esprima@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.0.tgz#4499eddcd1110e0b218bacf2fa7f7f59f55ca804"
+  
   esrecurse@^4.1.0:
     version "4.2.1"
     resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.2.1.tgz#007a3b9fdbc2b3bb87e4879ea19c92fdbd3942cf"
@@ -1956,7 +1987,7 @@ Lockfile:
     dependencies:
       fill-range "^2.1.0"
   
-  express@^4.16.2:
+  express@^4.16.2, express@^4.16.3:
     version "4.16.3"
     resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
     dependencies:
@@ -2058,6 +2089,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.11.1.tgz#f0efe18c4f56e4f40afc7e06c719fd5ee6188f38"
     dependencies:
       websocket-driver ">=0.5.1"
+  
+  file-loader@^1.1.11:
+    version "1.1.11"
+    resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-1.1.11.tgz#6fe886449b0f2a936e43cabaac0cdbfb369506f8"
+    dependencies:
+      loader-utils "^1.0.2"
+      schema-utils "^0.4.5"
   
   filename-regex@^2.0.0:
     version "2.0.1"
@@ -2717,6 +2755,10 @@ Lockfile:
       is-data-descriptor "^1.0.0"
       kind-of "^6.0.2"
   
+  is-directory@^0.3.1:
+    version "0.3.1"
+    resolved "https://registry.yarnpkg.com/is-directory/-/is-directory-0.3.1.tgz#61339b6f2475fc772fd9c9d83f5c8575dc154ae1"
+  
   is-dotfile@^1.0.0:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/is-dotfile/-/is-dotfile-1.0.3.tgz#a6a2f32ffd2dfb04f5ca25ecd0f6b83cf798a1e1"
@@ -2904,6 +2946,13 @@ Lockfile:
   js-tokens@^3.0.0, js-tokens@^3.0.2:
     version "3.0.2"
     resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
+  
+  js-yaml@^3.4.3:
+    version "3.11.0"
+    resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.11.0.tgz#597c1a8bd57152f26d622ce4117851a51f5ebaef"
+    dependencies:
+      argparse "^1.0.7"
+      esprima "^4.0.0"
   
   js-yaml@~3.7.0:
     version "3.7.0"
@@ -3556,7 +3605,7 @@ Lockfile:
     version "0.3.0"
     resolved "https://registry.yarnpkg.com/os-browserify/-/os-browserify-0.3.0.tgz#854373c7f5c2315914fc9bfc6bd8238fdda1ec27"
   
-  os-homedir@^1.0.0:
+  os-homedir@^1.0.0, os-homedir@^1.0.1:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
   
@@ -3831,6 +3880,38 @@ Lockfile:
       postcss "^5.0.4"
       uniqid "^4.0.0"
   
+  postcss-load-config@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-config/-/postcss-load-config-1.2.0.tgz#539e9afc9ddc8620121ebf9d8c3673e0ce50d28a"
+    dependencies:
+      cosmiconfig "^2.1.0"
+      object-assign "^4.1.0"
+      postcss-load-options "^1.2.0"
+      postcss-load-plugins "^2.3.0"
+  
+  postcss-load-options@^1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-options/-/postcss-load-options-1.2.0.tgz#b098b1559ddac2df04bc0bb375f99a5cfe2b6d8c"
+    dependencies:
+      cosmiconfig "^2.1.0"
+      object-assign "^4.1.0"
+  
+  postcss-load-plugins@^2.3.0:
+    version "2.3.0"
+    resolved "https://registry.yarnpkg.com/postcss-load-plugins/-/postcss-load-plugins-2.3.0.tgz#745768116599aca2f009fad426b00175049d8d92"
+    dependencies:
+      cosmiconfig "^2.1.1"
+      object-assign "^4.1.0"
+  
+  postcss-loader@^2.1.4:
+    version "2.1.4"
+    resolved "https://registry.yarnpkg.com/postcss-loader/-/postcss-loader-2.1.4.tgz#f44a6390e03c84108b2b2063182d1a1011b2ce76"
+    dependencies:
+      loader-utils "^1.1.0"
+      postcss "^6.0.0"
+      postcss-load-config "^1.2.0"
+      schema-utils "^0.4.0"
+  
   postcss-merge-idents@^2.1.5:
     version "2.1.7"
     resolved "https://registry.yarnpkg.com/postcss-merge-idents/-/postcss-merge-idents-2.1.7.tgz#4c5530313c08e1d5b3bbf3d2bbc747e278eea270"
@@ -4008,7 +4089,7 @@ Lockfile:
       source-map "^0.5.6"
       supports-color "^3.2.3"
   
-  postcss@^6.0.1:
+  postcss@^6.0.0, postcss@^6.0.1:
     version "6.0.21"
     resolved "https://registry.yarnpkg.com/postcss/-/postcss-6.0.21.tgz#8265662694eddf9e9a5960db6da33c39e4cd069d"
     dependencies:
@@ -4375,6 +4456,10 @@ Lockfile:
     version "2.1.1"
     resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   
+  require-from-string@^1.1.0:
+    version "1.2.1"
+    resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
+  
   require-main-filename@^1.0.1:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/require-main-filename/-/require-main-filename-1.0.1.tgz#97f717b69d48784f5f526a6c5aa8ffdda055a4d1"
@@ -4440,7 +4525,7 @@ Lockfile:
     version "1.2.4"
     resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   
-  schema-utils@^0.4.5:
+  schema-utils@^0.4.0, schema-utils@^0.4.5:
     version "0.4.5"
     resolved "https://registry.yarnpkg.com/schema-utils/-/schema-utils-0.4.5.tgz#21836f0608aac17b78f9e3e24daff14a5ca13a3e"
     dependencies:
@@ -5416,7 +5501,7 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  SyntaxError: /Users/vallista/Documents/Development/portfolio/package.json: Unexpected token } in JSON at position 884
+  SyntaxError: /Users/vallista/Documents/Development/WebpackExample/package.json: Unexpected string in JSON at position 458
       at JSON.parse (<anonymous>)
       at /usr/local/lib/node_modules/yarn/lib/cli.js:770:59
       at Generator.next (<anonymous>)

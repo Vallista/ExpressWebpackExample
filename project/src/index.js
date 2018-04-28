@@ -1,4 +1,4 @@
-import HelloWorld from './components/HelloWorld';
+import MainPage from './pages/MainPage';
 
 const mainLoop = () => {
   const app = document.createElement('div');
@@ -6,8 +6,8 @@ const mainLoop = () => {
   
   document.body.appendChild(app);
   
-  const helloWorld = new HelloWorld();
-  helloWorld.render();
+  const mainPage = new MainPage();
+  mainPage.render();
 };
 
 window.addEventListener('DOMContentLoaded', () => { mainLoop(); });

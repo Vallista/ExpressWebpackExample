@@ -8,7 +8,7 @@ module.exports = {
   entry: path.resolve(projectDir, 'src'),
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: 'bundle.js',
+    filename: 'static/bundle.js',
   },
   module: {
     rules: [
@@ -24,7 +24,7 @@ module.exports = {
         test: /\.(png|jpg|gif)$/,
         loader: 'file-loader',
         options: {
-          outputPath: 'images/',
+          outputPath: 'static/images/',
         },
       },
       {
@@ -34,7 +34,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env']
+              presets: ['env'],
             },
           }
         ],

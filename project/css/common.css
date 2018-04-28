@@ -1,3 +1,12 @@
+@import './fonts.css';
+
+html, body {
+    margin: 0;
+    padding: 0;
+    background: rgb(97, 109, 126);
+    font-family: 'Do Hyeon', sans-serif;
+}
+
 body {
     text-align: center;
 }
